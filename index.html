@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jam Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <header>
+        <button id="navbar-toggle" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        
+        <nav id="main-nav">
+            <ul>
+                <li data-mode="clock" class="active">Jam</li>
+                <li data-mode="timer">Timer</li>
+                <li data-mode="settings">Pengaturan</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Mode Jam -->
+        <div id="clock-mode" class="mode-container active">
+            <div class="clock">
+                <div id="time">00:00:00</div>
+                <div id="date"></div>
+            </div>
+            
+            <div class="controls">
+                <button id="theme-toggle" aria-label="Ubah Tema">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+                
+                <div class="alarm-container">
+                    <button id="alarm-toggle" aria-label="Atur Alarm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v9l5 3M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"></path>
+                        </svg>
+                    </button>
+                    <div class="alarm-popup" id="alarm-popup">
+                        <h3>Set Alarm</h3>
+                        <div class="alarm-inputs">
+                            <input type="number" id="alarm-hour" min="0" max="23" placeholder="HH" aria-label="Jam">
+                            <span>:</span>
+                            <input type="number" id="alarm-minute" min="0" max="59" placeholder="MM" aria-label="Menit">
+                        </div>
+                        <div class="alarm-buttons">
+                            <button id="set-alarm">Set</button>
+                            <button id="cancel-alarm">Cancel</button>
+                        </div>
+                        <div id="alarm-status"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Timer -->
+        <div id="timer-mode" class="mode-container">
+            <div class="timer-container">
+                <div class="timer-circle">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle class="timer-background" cx="50" cy="50" r="45"></circle>
+                        <circle class="timer-progress" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <div class="timer-display">
+                        <div id="timer-time">00:00</div>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <div class="timer-inputs">
+                        <input type="number" id="timer-minute" min="0" max="59" placeholder="MM" aria-label="Menit">
+                        <span>:</span>
+                        <input type="number" id="timer-second" min="0" max="59" placeholder="SS" aria-label="Detik">
+                    </div>
+                    <div class="timer-buttons">
+                        <button id="start-timer">Start</button>
+                        <button id="pause-timer">Pause</button>
+                        <button id="reset-timer">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mode Pengaturan -->
+        <div id="settings-mode" class="mode-container">
+            <div class="settings-container">
+                <h2>Pengaturan</h2>
+                
+                <div class="setting-group">
+                    <h3>Tema</h3>
+                    <div class="theme-options">
+                        <label>
+                            <input type="radio" name="theme" value="dark" checked> Gelap
+                        </label>
+                        <label>
+                            <input type="radio" name="theme" value="light"> Terang
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Suara Alarm</h3>
+                    <div class="alarm-sound-options">
+                        <div class="sound-option">
+                            <label>
+                                <input type="radio" name="alarm-sound" value="alarm1" checked>
+                                Alarm 1
+                            </label>
+                            <button class="preview-sound" data-sound="alarm1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="sound-option">
+                            <label>
+                                <input type="radio" name="alarm-sound" value="alarm2">
+                                Alarm 2
+                            </label>
+                            <button class="preview-sound" data-sound="alarm2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="sound-option">
+                            <label>
+                                <input type="radio" name="alarm-sound" value="alarm3">
+                                Alarm 3
+                            </label>
+                            <button class="preview-sound" data-sound="alarm3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio Elements -->
+    <audio id="alarm-sound-1" preload="auto">
+        <source src="sound/alarm1.sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="alarm-sound-2" preload="auto">
+        <source src="sound/alarm2.sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="alarm-sound-3" preload="auto">
+        <source src="sound/alarm3.sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
